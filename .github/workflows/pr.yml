@@ -1,0 +1,67 @@
+name: Pull Request CI
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Set up permission
+        run: chmod +x gradlew
+      - name: Build debug
+        run: ./gradlew assembleDebug
+      - name: Unit-test
+        run: ./gradlew test
+  static_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install reviewdog
+        run: sudo su -c 'wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b /usr/local/bin/ v0.10.2'
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        name: cache
+        with:
+          path: build/bin
+          key: ${{ runner.os }}
+      - name: checkstyle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./checkstyle
+      - name: ktlint
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./ktlint
+      - name: detekt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./detekt
+  check_release_aseemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Set up permission
+        run: chmod +x gradlew
+      - name: Build internal release
+        run: ./gradlew assembleDebug
+      - name: Prepare key
+        run: |
+          echo ::set-env name=DEBUG_KEY::$( openssl base64 < .github/workflows/assets/debug.jks | tr -d '\n' )
+      - name: Sign internal release
+        id: sign_internal_release
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/debug
+          signingKeyBase64: ${{ env.DEBUG_KEY }}
+          alias: key0
+          keyStorePassword: 123456
+          keyPassword: 123456
