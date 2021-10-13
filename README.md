@@ -7,10 +7,10 @@
 
 # Команда авторов
 
-- [Алексей Зотов](https://github.com/LionZXY)
-- [Артем Найденышев](https://github.com/reo7sp)
-- [Илья Афимин](https://github.com/StealthTech)
-- [Дмитрий Жигалкин](https://github.com/Ansile)
+- [Алексей Зотов](https://github.com/let-robots-reign)
+- [Артем Найденышев](https://github.com/viktorZebra)
+- [Илья Афимин](https://github.com/IfuryI)
+- [Дмитрий Жигалкин](https://github.com/1Bitcoin)
 
 # Функциональность приложения
 1. Просмотр списка текущих трансляций авторов из подписок.
