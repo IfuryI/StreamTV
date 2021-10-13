@@ -45,13 +45,12 @@
 Макеты приложения реализованы в Figma и представлены по [ссылке](https://www.figma.com/file/rNx1qCJvsoiUtxpvp6uNyo/StreamTV?node-id=0%3A1).
 Карта экранов и базовое взаимодействие между экранами представлены в виде [Figma-прототипа](https://www.figma.com/proto/rNx1qCJvsoiUtxpvp6uNyo/StreamTV?page-id=0%3A1&node-id=3%3A4&viewport=241%2C48%2C0.5&scaling=scale-down&starting-point-node-id=2%3A3).
 
-## Команда авторов
+# Техническое задание в GoogleDocs
+https://docs.google.com/document/d/1_RR-kbqF6_MnJuG5jPfY7a-Sf3cuIJODQ2utx-Z-5G4/edit#
+
+# Команда авторов
 
 - [Алексей Зотов](https://github.com/LionZXY)
 - [Артем Найденышев](https://github.com/reo7sp)
 - [Илья Афимин](https://github.com/StealthTech)
 - [Дмитрий Жигалкин](https://github.com/Ansile)
-
-## Техническое задание в GoogleDocs
-https://docs.google.com/document/d/1_RR-kbqF6_MnJuG5jPfY7a-Sf3cuIJODQ2utx-Z-5G4/edit#
-
