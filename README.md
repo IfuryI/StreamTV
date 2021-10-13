@@ -4,7 +4,7 @@
 
 ## Команда авторов
 
-- [Алексей Зотов] https://github.com/LionZXY)
+- [Алексей Зотов](https://github.com/LionZXY)
 - [Артем Найденышев](https://github.com/reo7sp)
 - [Илья Афимин](https://github.com/StealthTech)
 - [Дмитрий Жигалкин](https://github.com/Ansile)
