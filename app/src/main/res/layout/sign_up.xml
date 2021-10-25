@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Login">
+        tools:context=".SignUp">
 
     <ImageView
             android:id="@+id/logo"
@@ -19,13 +19,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@id/logo"
-            android:layout_above="@id/signupFallback">
+            android:layout_above="@id/loginFallback">
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
-                android:text="@string/sign_in"
+                android:text="@string/sign_up"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:textSize="32sp"
                 android:layout_marginTop="64dp"
@@ -56,6 +56,24 @@
                 android:layout_marginStart="34dp"
                 android:layout_marginEnd="34dp"
                 android:layout_marginBottom="29dp"
+                android:autofillHints="emailAddress"
+                android:hint="@string/email"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:textColorHint="@color/hintTextColor"
+                android:textColor="@color/hintTextColor"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:inputType="textEmailAddress"
+                android:gravity="center_vertical" />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginBottom="29dp"
                 android:autofillHints="password"
                 android:hint="@string/password"
                 android:fontFamily="@font/poppins_regular"
@@ -74,7 +92,7 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="34dp"
                 android:layout_marginEnd="34dp"
-                android:text="@string/log_in"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_medium"
@@ -88,7 +106,7 @@
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/signupFallback"
+            android:id="@+id/loginFallback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -99,16 +117,16 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/don_t_have_an_account"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="18sp" />
 
         <TextView
-                android:id="@+id/signupLink"
+                android:id="@+id/loginLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_up"
+                android:text="@string/log_in"
                 android:textColor="@color/secondary"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="18sp"

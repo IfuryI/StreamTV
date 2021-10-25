@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">StreamTV</string>
+    <string name="app_logo_alt">App Logo</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
 </resources>

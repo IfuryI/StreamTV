@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/login">
+
+    <fragment
+            android:id="@+id/login"
+            android:name="com.example.streamtv.Login"
+            android:label="login"
+            tools:layout="@layout/login" >
+        <action
+                android:id="@+id/action_login_to_signUp"
+                app:destination="@id/signUp" />
+    </fragment>
+    <fragment
+            android:id="@+id/signUp"
+            android:name="com.example.streamtv.SignUp"
+            android:label="sign_up"
+            tools:layout="@layout/sign_up" >
+        <action
+                android:id="@+id/action_signUp_to_login"
+                app:destination="@id/login" />
+    </fragment>
+</navigation>
