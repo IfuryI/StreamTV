@@ -9,4 +9,14 @@
     <string name="log_in">Log In</string>
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account">Don’t have an account?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="views">Views</string>
+    <string name="likes">Likes</string>
+    <string name="profile">Profile</string>
+    <string name="edit">Edit</string>
+    <string name="about">About</string>
+    <string name="loremipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est velit egestas dui id ornare. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum.</string>
 </resources>

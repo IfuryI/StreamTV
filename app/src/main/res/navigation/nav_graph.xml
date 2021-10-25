@@ -13,6 +13,9 @@
         <action
                 android:id="@+id/action_login_to_signUp"
                 app:destination="@id/signUp" />
+        <action
+                android:id="@+id/action_login_to_profile"
+                app:destination="@id/profile" />
     </fragment>
     <fragment
             android:id="@+id/signUp"
@@ -22,5 +25,13 @@
         <action
                 android:id="@+id/action_signUp_to_login"
                 app:destination="@id/login" />
+        <action
+                android:id="@+id/action_signUp_to_profile"
+                app:destination="@id/profile" />
     </fragment>
+    <fragment
+            android:id="@+id/profile"
+            android:name="com.example.streamtv.Profile"
+            android:label="profile"
+            tools:layout="@layout/profile" />
 </navigation>
