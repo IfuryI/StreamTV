@@ -33,6 +33,7 @@
                 android:layout_marginBottom="36dp" />
 
         <EditText
+                android:id="@+id/loginInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/edit_text_style"
@@ -51,6 +52,7 @@
                 android:gravity="center_vertical" />
 
         <EditText
+                android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/edit_text_style"
@@ -69,6 +71,7 @@
                 android:gravity="center_vertical" />
 
         <EditText
+                android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/edit_text_style"
@@ -87,8 +90,8 @@
                 android:gravity="center_vertical" />
 
         <com.google.android.material.button.MaterialButton
-                app:cornerRadius="10dp"
                 android:id="@+id/signupButton"
+                app:cornerRadius="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="34dp"
