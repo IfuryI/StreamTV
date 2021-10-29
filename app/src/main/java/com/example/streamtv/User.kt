@@ -1,15 +1,9 @@
 package com.example.streamtv
 
-import java.io.Serializable
+import com.google.firebase.database.IgnoreExtraProperties
 
-class User : Serializable {
-    public var login: String = ""
-    public var email: String = ""
-
-    constructor() {}
-
-    constructor(login: String, email: String) {
-        this.login = login
-        this.email = email
-    }
-}
+@IgnoreExtraProperties
+data class User(
+    val login: String? = null, val email: String? = null,
+    val status: String? = null, val about: String? = null
+) {}

@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         val currentUser = auth.currentUser
-        if (currentUser == null) {
-            navController.navigate(R.id.login)
+        if (currentUser != null) {
+            navController.navigate(R.id.profileFragment)
         }
     }
 

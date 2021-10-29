@@ -57,6 +57,7 @@
                 android:scaleType="centerCrop" />
 
         <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Andy Williams"
@@ -66,6 +67,7 @@
                 android:layout_marginTop="4dp" />
 
         <TextView
+                android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Streamer, ordinary IT guy"
@@ -197,6 +199,7 @@
             android:layout_marginTop="20dp"/>
 
     <TextView
+            android:id="@+id/aboutText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/loremipsum"
