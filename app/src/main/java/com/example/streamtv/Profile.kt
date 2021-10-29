@@ -52,8 +52,8 @@ class Profile : Fragment() {
                     return
                 }
                 username.text = user.login
-                status.text = user.status
-                about.text = user.about
+                status.text = user.status ?: "no status"
+                about.text = user.about ?: "User hasn't provided information about themselves"
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -66,7 +66,7 @@ class Profile : Fragment() {
         val logoutButton = rootView.findViewById<ImageView>(R.id.logoutButton)
 
         editButton.setOnClickListener {
-            Toast.makeText(activity, "Editing profile in progress...", Toast.LENGTH_SHORT).show()
+            rootView.findNavController().navigate(R.id.action_profileFragment_to_editProfile)
         }
 
         logoutButton.setOnClickListener {

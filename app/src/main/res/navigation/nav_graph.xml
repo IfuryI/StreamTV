@@ -37,20 +37,28 @@
         <action
                 android:id="@+id/action_profileFragment_to_login"
                 app:destination="@id/login" />
+        <action
+                android:id="@+id/action_profileFragment_to_editProfile"
+                app:destination="@id/editProfile" />
     </fragment>
     <fragment
             android:id="@+id/homeFragment"
-            android:name="com.example.streamtv.HomeFragment"
+            android:name="com.example.streamtv.Home"
             android:label="home"
             tools:layout="@layout/home" />
     <fragment
             android:id="@+id/streamsFragment"
-            android:name="com.example.streamtv.StreamsFragment"
+            android:name="com.example.streamtv.Streams"
             android:label="streams"
             tools:layout="@layout/streams" />
     <fragment
             android:id="@+id/followingFragment"
-            android:name="com.example.streamtv.FollowingFragment"
+            android:name="com.example.streamtv.Following"
             android:label="following"
             tools:layout="@layout/following" />
+    <fragment
+            android:id="@+id/editProfile"
+            android:name="com.example.streamtv.EditProfile"
+            android:label="edit_profile"
+            tools:layout="@layout/edit_profile" />
 </navigation>

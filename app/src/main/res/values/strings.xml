@@ -20,4 +20,5 @@
     <string name="loremipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est velit egestas dui id ornare. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum.</string>
     <string name="home">Home</string>
     <string name="streams">Streams</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>
