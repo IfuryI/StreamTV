@@ -33,7 +33,11 @@
             android:id="@+id/profileFragment"
             android:name="com.example.streamtv.Profile"
             android:label="profile"
-            tools:layout="@layout/profile" />
+            tools:layout="@layout/profile" >
+        <action
+                android:id="@+id/action_profileFragment_to_login"
+                app:destination="@id/login" />
+    </fragment>
     <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.streamtv.HomeFragment"
