@@ -33,24 +33,26 @@
                 android:layout_marginBottom="36dp" />
 
         <EditText
+                android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/edit_text_style"
                 android:layout_marginStart="34dp"
                 android:layout_marginEnd="34dp"
                 android:layout_marginBottom="29dp"
-                android:autofillHints="username"
-                android:hint="@string/login"
+                android:autofillHints="emailAddress"
+                android:hint="@string/email"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="20sp"
                 android:textColorHint="@color/hintTextColor"
                 android:textColor="@color/hintTextColor"
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:gravity="center_vertical" />
 
         <EditText
+                android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/edit_text_style"
