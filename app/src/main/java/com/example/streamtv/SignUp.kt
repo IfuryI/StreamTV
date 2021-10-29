@@ -35,12 +35,16 @@ class SignUp : Fragment() {
         val signupButton = rootView.findViewById<Button>(R.id.signupButton)
         val loginLink = rootView.findViewById<TextView>(R.id.loginLink)
 
+        val loginInput = rootView.findViewById<EditText>(R.id.loginInput)
+        val emailInput = rootView.findViewById<EditText>(R.id.emailInput)
+        val passwordInput = rootView.findViewById<EditText>(R.id.passwordInput)
+
         signupButton.setOnClickListener {
             navController = rootView.findNavController()
-            val login = rootView.findViewById<EditText>(R.id.loginInput).text.toString().trim()
-            val email = rootView.findViewById<EditText>(R.id.emailInput).text.toString().trim()
-            val password = rootView.findViewById<EditText>(R.id.passwordInput).text.toString().trim()
-            createUser(login, email, password)
+            if (isValid(loginInput, emailInput, passwordInput)) {
+                createUser(getEditTextValue(loginInput), getEditTextValue(emailInput),
+                    getEditTextValue(passwordInput))
+            }
         }
         loginLink.setOnClickListener {
             rootView.findNavController().navigate(R.id.action_signUp_to_login)
@@ -49,28 +53,67 @@ class SignUp : Fragment() {
     }
 
     private fun createUser(login: String, email: String, password: String) {
-        // TODO: validate data
-        // if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Log.d("SignUp", "createUserWithEmail:success")
                     val user = auth.currentUser
-                    if (user != null) {
-                        FirebaseDatabase.getInstance().getReference("Users")
-                            .child(user.uid).setValue(User(login, email))
-                            .addOnCompleteListener(requireActivity()) { task ->
-                                if (task.isSuccessful) {
-                                    navController.navigate(R.id.action_signUp_to_profile)
-                                }
-                            }
+                    if (user == null) {
+                        Log.w("SignUp", "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(activity, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        return@addOnCompleteListener
                     }
+                    FirebaseDatabase.getInstance().getReference("Users")
+                        .child(user.uid).setValue(User(login, email))
+                        .addOnCompleteListener(requireActivity()) { dbtask ->
+                            if (dbtask.isSuccessful) {
+                                Log.d("SignUp", "createUserWithEmail:success")
+                                navController.navigate(R.id.action_signUp_to_profile)
+                            }
+                        }
                 } else {
                     Log.w("SignUp", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(activity, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    // TODO: show error
                 }
             }
+    }
+
+    private fun isValid(loginInput: EditText, emailInput: EditText, passwordInput: EditText): Boolean {
+        val login = getEditTextValue(loginInput)
+        val email = getEditTextValue(emailInput)
+        val password = getEditTextValue(passwordInput)
+
+        if (login.isEmpty()) {
+            loginInput.error = "Login is required"
+            loginInput.requestFocus()
+            return false
+        }
+        if (email.isEmpty()) {
+            emailInput.error = "Email is required"
+            emailInput.requestFocus()
+            return false
+        }
+        if (password.isEmpty()) {
+            passwordInput.error = "Password is required"
+            passwordInput.requestFocus()
+            return false
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailInput.error = "Provide valid email address"
+            emailInput.requestFocus()
+            return false
+        }
+
+        if (password.length < 6) {
+            passwordInput.error = "Min password length is 6"
+            passwordInput.requestFocus()
+            return false
+        }
+
+        return true
+    }
+
+    private fun getEditTextValue(editText: EditText): String {
+        return editText.text.toString().trim()
     }
 }
