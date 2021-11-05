@@ -53,12 +53,12 @@
                 android:layout_width="130dp"
                 android:layout_height="130dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <ImageView
                     android:id="@+id/avatar"
                     app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_default_avatar" />
+                    tools:src="@drawable/ic_default_avatar" />
 
             <ImageView
                     android:id="@+id/changeAvatar"
