@@ -58,7 +58,7 @@
                     app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/ic_default_avatar" />
+                    android:src="@drawable/ic_default_avatar" />
 
             <ImageView
                     android:id="@+id/changeAvatar"

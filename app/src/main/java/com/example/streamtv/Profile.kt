@@ -1,49 +1,29 @@
 package com.example.streamtv
 
 import android.Manifest
-import android.R.attr
-import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
-import androidx.core.app.ActivityCompat.startActivityForResult
-
-import android.content.Intent
-
-import android.content.DialogInterface
-import android.database.Cursor
-import android.provider.MediaStore
-import androidx.core.app.ActivityCompat
-import android.graphics.BitmapFactory
-
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.ParcelFileDescriptor
-import java.io.FileDescriptor
-import android.content.pm.PackageManager
-import android.graphics.drawable.BitmapDrawable
-
-import androidx.core.content.ContextCompat
-import androidx.annotation.NonNull
-import java.io.File
-import android.R.attr.data
-import androidx.core.app.ActivityCompat.startActivityForResult
-import java.lang.Exception
 
 
 class Profile : Fragment() {
@@ -89,7 +69,8 @@ class Profile : Fragment() {
                 username.text = user.login
                 status.text = user.status ?: "no status"
                 about.text = user.about ?: "User hasn't provided information about themselves"
-                Glide.with(requireActivity())
+                Glide
+                    .with(this@Profile)
                     .load(user.avatarURL ?: R.drawable.ic_default_avatar)
                     .dontTransform()
                     .into(avatar)
@@ -159,7 +140,12 @@ class Profile : Fragment() {
         if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             val selectedImage: Uri = data.data ?: return
             Log.v("AVATAR", selectedImage.toString())
-            avatar.setImageURI(selectedImage)
+            // avatar.setImageURI(selectedImage)
+            // TODO: upload avatar to the server
+            Glide
+                .with(this)
+                .load(selectedImage)
+                .into(avatar)
         }
     }
 
