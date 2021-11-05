@@ -16,9 +16,12 @@
     <string name="likes">Likes</string>
     <string name="profile">Profile</string>
     <string name="edit">Edit</string>
+    <string name="save">Save</string>
     <string name="about">About</string>
     <string name="loremipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est velit egestas dui id ornare. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum.</string>
     <string name="home">Home</string>
     <string name="streams">Streams</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="status">Status</string>
+    <string name="about_hint">Tell us a bit about yourself</string>
 </resources>

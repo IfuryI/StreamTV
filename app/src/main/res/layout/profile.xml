@@ -30,7 +30,7 @@
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/edit"
                 android:layout_toStartOf="@id/logoutButton"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="16dp" />
 
         <ImageView
                 android:id="@+id/logoutButton"
@@ -49,12 +49,28 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-        <com.google.android.material.imageview.ShapeableImageView
-                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        <RelativeLayout
                 android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@drawable/avatar_test"
-                android:scaleType="centerCrop" />
+                android:layout_height="130dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/avatar"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_default_avatar" />
+
+            <ImageView
+                    android:id="@+id/changeAvatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_camera"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+        </RelativeLayout>
 
         <TextView
                 android:id="@+id/username"
@@ -196,7 +212,7 @@
             android:textSize="22sp"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_medium"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
 
     <TextView
             android:id="@+id/aboutText"
@@ -206,6 +222,6 @@
             android:textSize="16sp"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_medium"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp" />
 
 </LinearLayout>

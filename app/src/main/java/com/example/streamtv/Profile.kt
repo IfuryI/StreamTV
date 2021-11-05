@@ -39,6 +39,7 @@ class Profile : Fragment() {
             rootView.findNavController().navigate(R.id.action_profileFragment_to_login)
         }
 
+        val avatar = rootView.findViewById<ImageView>(R.id.avatar)
         val username = rootView.findViewById<TextView>(R.id.username)
         val status = rootView.findViewById<TextView>(R.id.status)
         val about = rootView.findViewById<TextView>(R.id.aboutText)
