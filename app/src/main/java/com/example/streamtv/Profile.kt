@@ -43,7 +43,14 @@ import androidx.annotation.NonNull
 import java.io.File
 import android.R.attr.data
 import androidx.core.app.ActivityCompat.startActivityForResult
+import com.sangcomz.fishbun.FishBun
+import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import java.lang.Exception
+import android.R.attr.path
+import android.os.Parcelable
+
+import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
+import com.sangcomz.fishbun.adapter.image.impl.CoilAdapter
 
 
 class Profile : Fragment() {
@@ -125,41 +132,67 @@ class Profile : Fragment() {
         if (
             ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_GRANTED
         ) {
             selectImage(context)
         } else {
             requestPermissions(
                 arrayOf(
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ), 1
             )
         }
     }
 
     private fun selectImage(context: Context) {
-        val options = arrayOf<CharSequence>("Choose from Gallery", "Cancel")
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setTitle("Choose your profile picture")
-        builder.setItems(options) { dialog, item ->
-            when {
-                options[item] == "Choose from Gallery" -> {
-                    val i = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(i, 2)
-                }
-                options[item] == "Cancel" -> {
-                    dialog.dismiss()
-                }
-            }
-        }
-        builder.show()
+        FishBun
+            .with(this)
+            .setImageAdapter(CoilAdapter())
+            .setMaxCount(1)
+            .startAlbum()
+//        val options = arrayOf<CharSequence>("Choose from Gallery", "Cancel")
+//        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+//        builder.setTitle("Choose your profile picture")
+//        builder.setItems(options) { dialog, item ->
+//            when {
+//                options[item] == "Choose from Gallery" -> {
+//                    val i = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//                    startActivityForResult(i, 2)
+//                }
+//                options[item] == "Cancel" -> {
+//                    dialog.dismiss()
+//                }
+//            }
+//        }
+//        builder.show()
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+//            val selectedImage: Uri = data.data ?: return
+//            Log.v("AVATAR", selectedImage.toString())
+//            avatar.setImageURI(selectedImage)
+//        }
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            val selectedImage: Uri = data.data ?: return
-            Log.v("AVATAR", selectedImage.toString())
-            avatar.setImageURI(selectedImage)
+        when (requestCode) {
+            FishBun.FISHBUN_REQUEST_CODE -> if (resultCode == RESULT_OK) {
+                val path = data?.getParcelableArrayListExtra<Parcelable>(INTENT_PATH)
+                val pic = path?.get(0) ?: return
+                Log.v("HERE", pic.toString())
+                Glide
+                    .with(this)
+                    .load(pic)
+                    .into(avatar)
+            }
         }
     }
 
@@ -178,7 +211,6 @@ class Profile : Fragment() {
             }
             if (allow) {
                 Toast.makeText(activity, "Permission Granted", Toast.LENGTH_LONG).show()
-                selectImage(requireActivity())
             }
         }
     }
