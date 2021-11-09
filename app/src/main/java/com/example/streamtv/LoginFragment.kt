@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 
-class Login : Fragment() {
+class LoginFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var auth: FirebaseAuth
 

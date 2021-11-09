@@ -16,7 +16,7 @@ import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class SignUp : Fragment() {
+class SignUpFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var auth: FirebaseAuth
 
@@ -63,7 +63,7 @@ class SignUp : Fragment() {
                         return@addOnCompleteListener
                     }
                     FirebaseDatabase.getInstance().getReference("Users")
-                        .child(user.uid).setValue(User(login, email))
+                        .child(user.uid).setValue(UserFragment(login, email))
                         .addOnCompleteListener(requireActivity()) { dbtask ->
                             if (dbtask.isSuccessful) {
                                 Log.d("SignUp", "createUserWithEmail:success")

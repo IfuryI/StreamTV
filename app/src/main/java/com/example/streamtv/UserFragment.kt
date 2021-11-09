@@ -3,7 +3,7 @@ package com.example.streamtv
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class User(
+data class UserFragment(
     val login: String? = null, val email: String? = null,
     val status: String? = null, val about: String? = null,
     val avatarURL: String? = null

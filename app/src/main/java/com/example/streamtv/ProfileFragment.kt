@@ -20,7 +20,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 
 
-class Profile : Fragment() {
+class ProfileFragment : Fragment() {
     private var user: FirebaseUser? = null
     private lateinit var reference: DatabaseReference
 
@@ -53,7 +53,7 @@ class Profile : Fragment() {
 
         reference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue<User>()
+                val user = snapshot.getValue<UserFragment>()
                 if (user == null) {
                     Log.w("Profile", "Failed to get user data")
                     Toast.makeText(activity, "Error getting profile data!", Toast.LENGTH_LONG)
@@ -64,7 +64,7 @@ class Profile : Fragment() {
                 status.text = user.status ?: "no status"
                 about.text = user.about ?: "User hasn't provided information about themselves"
                 Glide
-                    .with(this@Profile)
+                    .with(this@ProfileFragment)
                     .load(user.avatarURL ?: R.drawable.ic_default_avatar)
                     .dontTransform()
                     .into(avatar)
