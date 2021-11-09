@@ -1,14 +1,8 @@
 package com.example.streamtv
 
-import android.Manifest
-import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
@@ -96,36 +90,31 @@ class Profile : Fragment() {
         }
 
         changeAvatarButton.setOnClickListener {
-            checkPermissions(requireActivity())
+            selectImage()
         }
 
         return rootView
     }
 
-    private fun checkPermissions(context: Context) {
-        if (
-            ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            selectImage(context)
-        } else {
-            requestPermissions(
-                arrayOf(
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ), 1
-            )
+    private val choosePicture =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                Glide
+                    .with(this)
+                    .load(uri)
+                    .into(avatar)
+                // TODO: upload image on the server
+            }
         }
-    }
 
-    private fun selectImage(context: Context) {
+    private fun selectImage() {
         val options = arrayOf<CharSequence>("Choose from Gallery", "Cancel")
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         builder.setTitle("Choose your profile picture")
         builder.setItems(options) { dialog, item ->
             when {
                 options[item] == "Choose from Gallery" -> {
-                    val i = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(i, 2)
+                    choosePicture.launch("image/*")
                 }
                 options[item] == "Cancel" -> {
                     dialog.dismiss()
@@ -133,39 +122,5 @@ class Profile : Fragment() {
             }
         }
         builder.show()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            val selectedImage: Uri = data.data ?: return
-            Log.v("AVATAR", selectedImage.toString())
-            // avatar.setImageURI(selectedImage)
-            // TODO: upload avatar to the server
-            Glide
-                .with(this)
-                .load(selectedImage)
-                .into(avatar)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1) {
-            var allow = false
-            for (granted in grantResults) {
-                if (granted == PackageManager.PERMISSION_GRANTED) {
-                    allow = true
-                }
-            }
-            if (allow) {
-                Toast.makeText(activity, "Permission Granted", Toast.LENGTH_LONG).show()
-                selectImage(requireActivity())
-            }
-        }
     }
 }

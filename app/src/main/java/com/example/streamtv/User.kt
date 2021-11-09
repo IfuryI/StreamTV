@@ -7,4 +7,4 @@ data class User(
     val login: String? = null, val email: String? = null,
     val status: String? = null, val about: String? = null,
     val avatarURL: String? = null
-) {}
+)
