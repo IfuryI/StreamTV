@@ -6,17 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.streamtv.databinding.LoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
-    private lateinit var navController: NavController
-    private lateinit var auth: FirebaseAuth
+    private var _binding: LoginBinding? = null
+    private var navController: NavController? = null
+    private var auth: FirebaseAuth? = null
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,32 +29,37 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.login, container, false)
+    ): View {
+        _binding = LoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val loginButton = rootView.findViewById<Button>(R.id.loginButton)
-        val signupLink = rootView.findViewById<TextView>(R.id.signupLink)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-        val emailInput = rootView.findViewById<EditText>(R.id.emailInput)
-        val passwordInput = rootView.findViewById<EditText>(R.id.passwordInput)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        loginButton.setOnClickListener {
-            navController = rootView.findNavController()
+        val emailInput = binding.emailInput
+        val passwordInput = binding.passwordInput
+
+        binding.loginButton.setOnClickListener {
+            navController = NavHostFragment.findNavController(this)
             if (isValid(emailInput, passwordInput)) {
                 loginUser(getEditTextValue(emailInput), getEditTextValue(passwordInput))
             }
         }
-        signupLink.setOnClickListener {
-            rootView.findNavController().navigate(R.id.action_login_to_signUp)
+        binding.signupLink.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_login_to_signUp)
         }
-
-        return rootView
     }
 
     private fun loginUser(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+        auth?.signInWithEmailAndPassword(email, password)?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                navController.navigate(R.id.action_login_to_profile)
+                navController?.navigate(R.id.action_login_to_profile)
             } else {
                 Toast.makeText(activity, "Invalid email/password", Toast.LENGTH_LONG).show()
             }
