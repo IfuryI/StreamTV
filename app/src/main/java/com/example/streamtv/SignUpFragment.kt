@@ -78,6 +78,9 @@ class SignUpFragment : Fragment() {
                                 if (dbtask.isSuccessful) {
                                     Log.d("SignUp", "createUserWithEmail:success")
                                     navController?.navigate(R.id.action_signUp_to_profile)
+                                } else {
+                                    Toast.makeText(context, "Error creating user",
+                                        Toast.LENGTH_SHORT).show()
                                 }
                             }
                     } else {

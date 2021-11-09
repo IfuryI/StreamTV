@@ -67,8 +67,9 @@ class ProfileFragment : Fragment() {
                     return
                 }
                 binding.username.text = user.login
-                binding.status.text = user.status ?: "no status"
-                binding.aboutText.text = user.about ?: "User hasn't provided information about themselves"
+                binding.status.text = if (!user.status.isNullOrBlank()) user.status else "no status"
+                binding.aboutText.text = if (!user.about.isNullOrBlank()) user.about else
+                    "User hasn't provided information about themselves"
                 Glide
                     .with(this@ProfileFragment)
                     .load(user.avatarURL ?: R.drawable.ic_default_avatar)
