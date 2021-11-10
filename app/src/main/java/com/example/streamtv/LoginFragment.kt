@@ -1,12 +1,12 @@
 package com.example.streamtv
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.streamtv.databinding.LoginBinding
@@ -26,7 +26,8 @@ class LoginFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = LoginBinding.inflate(inflater, container, false)
@@ -67,9 +68,11 @@ class LoginFragment : Fragment() {
 
     private fun isValid(emailInput: EditText, passwordInput: EditText): Boolean {
         val v = Validator()
-        return (v.checkEmpty(emailInput)
-                && v.checkEmail(emailInput)
-                && v.checkEmpty(passwordInput))
+        return (
+            v.checkEmpty(emailInput) &&
+                v.checkEmail(emailInput) &&
+                v.checkEmpty(passwordInput)
+            )
     }
 
     private fun getEditTextValue(editText: EditText): String {

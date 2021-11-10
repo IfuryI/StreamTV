@@ -2,12 +2,12 @@ package com.example.streamtv
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.streamtv.databinding.SignUpBinding
@@ -28,7 +28,8 @@ class SignUpFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = SignUpBinding.inflate(inflater, container, false)
@@ -50,8 +51,11 @@ class SignUpFragment : Fragment() {
         binding.signupButton.setOnClickListener {
             navController = NavHostFragment.findNavController(this)
             if (isValid(loginInput, emailInput, passwordInput)) {
-                createUser(getEditTextValue(loginInput), getEditTextValue(emailInput),
-                    getEditTextValue(passwordInput))
+                createUser(
+                    getEditTextValue(loginInput),
+                    getEditTextValue(emailInput),
+                    getEditTextValue(passwordInput)
+                )
             }
         }
         binding.loginLink.setOnClickListener {
@@ -67,8 +71,11 @@ class SignUpFragment : Fragment() {
                         val user = it.currentUser
                         if (user == null) {
                             Log.w("SignUp", "createUserWithEmail:failure", task.exception)
-                            Toast.makeText(activity, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                activity,
+                                "Authentication failed.",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             return@addOnCompleteListener
                         }
                         FirebaseDatabase.getInstance().getReference("Users")
@@ -78,26 +85,38 @@ class SignUpFragment : Fragment() {
                                     Log.d("SignUp", "createUserWithEmail:success")
                                     navController?.navigate(R.id.action_signUp_to_profile)
                                 } else {
-                                    Toast.makeText(context, "Error creating user",
-                                        Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "Error creating user",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
                     } else {
                         Log.w("SignUp", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(activity, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            activity,
+                            "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }
     }
 
-    private fun isValid(loginInput: EditText, emailInput: EditText, passwordInput: EditText): Boolean {
+    private fun isValid(
+        loginInput: EditText,
+        emailInput: EditText,
+        passwordInput: EditText
+    ): Boolean {
         val v = Validator()
-        return (v.checkEmpty(loginInput)
-                && v.checkEmpty(emailInput)
-                && v.checkEmail(emailInput)
-                && v.checkEmpty(passwordInput)
-                && v.checkPasswdLength(passwordInput))
+        return (
+            v.checkEmpty(loginInput) &&
+                v.checkEmpty(emailInput) &&
+                v.checkEmail(emailInput) &&
+                v.checkEmpty(passwordInput) &&
+                v.checkPasswdLength(passwordInput)
+            )
     }
 
     private fun getEditTextValue(editText: EditText): String {

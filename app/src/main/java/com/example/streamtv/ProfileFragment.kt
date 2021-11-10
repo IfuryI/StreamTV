@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 
-
 class ProfileFragment : Fragment() {
     private var _binding: ProfileBinding? = null
     private var user: FirebaseUser? = null
@@ -41,7 +40,8 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = ProfileBinding.inflate(inflater, container, false)
@@ -61,32 +61,35 @@ class ProfileFragment : Fragment() {
                 .navigate(R.id.action_profileFragment_to_login)
         }
 
-        reference?.child(userID)?.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue<User>()
-                if (user == null) {
+        reference?.child(userID)?.addListenerForSingleValueEvent(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val user = snapshot.getValue<User>()
+                    if (user == null) {
+                        Log.w("Profile", "Failed to get user data")
+                        Toast.makeText(activity, "Error getting profile data!", Toast.LENGTH_LONG)
+                            .show()
+                        return
+                    }
+                    binding.username.text = user.login
+                    binding.status.text = if (!user.status.isNullOrBlank()) user.status else
+                        "no status"
+                    binding.aboutText.text = if (!user.about.isNullOrBlank()) user.about else
+                        "User hasn't provided information about themselves"
+                    Glide
+                        .with(this@ProfileFragment)
+                        .load(user.avatarURL ?: R.drawable.ic_default_avatar)
+                        .dontTransform()
+                        .into(binding.avatar)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
                     Log.w("Profile", "Failed to get user data")
                     Toast.makeText(activity, "Error getting profile data!", Toast.LENGTH_LONG)
                         .show()
-                    return
                 }
-                binding.username.text = user.login
-                binding.status.text = if (!user.status.isNullOrBlank()) user.status else "no status"
-                binding.aboutText.text = if (!user.about.isNullOrBlank()) user.about else
-                    "User hasn't provided information about themselves"
-                Glide
-                    .with(this@ProfileFragment)
-                    .load(user.avatarURL ?: R.drawable.ic_default_avatar)
-                    .dontTransform()
-                    .into(binding.avatar)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("Profile", "Failed to get user data")
-                Toast.makeText(activity, "Error getting profile data!", Toast.LENGTH_LONG)
-                    .show()
-            }
-        })
+        )
 
         val editButton = binding.editButton
         val logoutButton = binding.logoutButton
