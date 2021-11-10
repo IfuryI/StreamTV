@@ -2,7 +2,6 @@ package com.example.streamtv
 
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -93,39 +92,12 @@ class SignUpFragment : Fragment() {
     }
 
     private fun isValid(loginInput: EditText, emailInput: EditText, passwordInput: EditText): Boolean {
-        val login = getEditTextValue(loginInput)
-        val email = getEditTextValue(emailInput)
-        val password = getEditTextValue(passwordInput)
-
-        if (login.isEmpty()) {
-            loginInput.error = "Login is required"
-            loginInput.requestFocus()
-            return false
-        }
-        if (email.isEmpty()) {
-            emailInput.error = "Email is required"
-            emailInput.requestFocus()
-            return false
-        }
-        if (password.isEmpty()) {
-            passwordInput.error = "Password is required"
-            passwordInput.requestFocus()
-            return false
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailInput.error = "Provide valid email address"
-            emailInput.requestFocus()
-            return false
-        }
-
-        if (password.length < 6) {
-            passwordInput.error = "Min password length is 6"
-            passwordInput.requestFocus()
-            return false
-        }
-
-        return true
+        val v = Validator()
+        return (v.checkEmpty(loginInput)
+                && v.checkEmpty(emailInput)
+                && v.checkEmail(emailInput)
+                && v.checkEmpty(passwordInput)
+                && v.checkPasswdLength(passwordInput))
     }
 
     private fun getEditTextValue(editText: EditText): String {

@@ -31,6 +31,6 @@ class StreamsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO: add logic here
+        // add logic here
     }
 }
