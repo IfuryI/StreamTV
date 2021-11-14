@@ -1,4 +1,4 @@
-package com.example.streamtv
+package com.example.streamtv.Streams
 
 import android.os.Bundle
 import android.view.LayoutInflater

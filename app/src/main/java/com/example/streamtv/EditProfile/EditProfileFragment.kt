@@ -1,4 +1,4 @@
-package com.example.streamtv
+package com.example.streamtv.EditProfile
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.example.streamtv.R
+import com.example.streamtv.Utils.User
 import com.example.streamtv.databinding.EditProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

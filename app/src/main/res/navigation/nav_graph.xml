@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/login"
-            android:name="com.example.streamtv.LoginFragment"
+            android:name="com.example.streamtv.Login.LoginFragment"
             android:label="login"
             tools:layout="@layout/login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
             android:id="@+id/signUp"
-            android:name="com.example.streamtv.SignUpFragment"
+            android:name="com.example.streamtv.Signup.SignUpFragment"
             android:label="sign_up"
             tools:layout="@layout/sign_up" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
             android:id="@+id/profileFragment"
-            android:name="com.example.streamtv.ProfileFragment"
+            android:name="com.example.streamtv.Profile.ProfileFragment"
             android:label="profile"
             tools:layout="@layout/profile" >
         <action
@@ -43,22 +43,22 @@
     </fragment>
     <fragment
             android:id="@+id/homeFragment"
-            android:name="com.example.streamtv.HomeFragment"
+            android:name="com.example.streamtv.Home.HomeFragment"
             android:label="home"
             tools:layout="@layout/home" />
     <fragment
             android:id="@+id/streamsFragment"
-            android:name="com.example.streamtv.StreamsFragment"
+            android:name="com.example.streamtv.Streams.StreamsFragment"
             android:label="streams"
             tools:layout="@layout/streams" />
     <fragment
             android:id="@+id/followingFragment"
-            android:name="com.example.streamtv.FollowingFragment"
+            android:name="com.example.streamtv.Following.FollowingFragment"
             android:label="following"
             tools:layout="@layout/following" />
     <fragment
             android:id="@+id/editProfile"
-            android:name="com.example.streamtv.EditProfileFragment"
+            android:name="com.example.streamtv.EditProfile.EditProfileFragment"
             android:label="edit_profile"
             tools:layout="@layout/edit_profile" >
         <action

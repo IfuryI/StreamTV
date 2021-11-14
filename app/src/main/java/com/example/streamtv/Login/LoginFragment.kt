@@ -1,4 +1,4 @@
-package com.example.streamtv
+package com.example.streamtv.Login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.streamtv.R
+import com.example.streamtv.Utils.Validator
 import com.example.streamtv.databinding.LoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
