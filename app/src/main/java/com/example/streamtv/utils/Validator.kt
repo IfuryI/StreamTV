@@ -1,4 +1,4 @@
-package com.example.streamtv.Utils
+package com.example.streamtv.utils
 
 import android.util.Patterns
 import android.widget.EditText

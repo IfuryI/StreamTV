@@ -1,4 +1,4 @@
-package com.example.streamtv.Signup
+package com.example.streamtv.signup
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.streamtv.R
-import com.example.streamtv.Utils.User
-import com.example.streamtv.Utils.Validator
 import com.example.streamtv.databinding.SignUpBinding
+import com.example.streamtv.utils.User
+import com.example.streamtv.utils.Validator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 

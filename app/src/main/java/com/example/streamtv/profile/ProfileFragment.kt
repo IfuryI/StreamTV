@@ -1,4 +1,4 @@
-package com.example.streamtv.Profile
+package com.example.streamtv.profile
 
 import android.app.AlertDialog
 import android.net.Uri
@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.example.streamtv.R
-import com.example.streamtv.Utils.User
 import com.example.streamtv.databinding.ProfileBinding
+import com.example.streamtv.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot

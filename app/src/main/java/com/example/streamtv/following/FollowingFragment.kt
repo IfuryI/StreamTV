@@ -1,4 +1,4 @@
-package com.example.streamtv.Following
+package com.example.streamtv.following
 
 import android.os.Bundle
 import android.view.LayoutInflater

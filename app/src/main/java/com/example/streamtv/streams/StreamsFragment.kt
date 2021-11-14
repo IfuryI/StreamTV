@@ -1,14 +1,14 @@
-package com.example.streamtv.Home
+package com.example.streamtv.streams
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.streamtv.databinding.HomeBinding
+import com.example.streamtv.databinding.StreamsBinding
 
-class HomeFragment : Fragment() {
-    private var _binding: HomeBinding? = null
+class StreamsFragment : Fragment() {
+    private var _binding: StreamsBinding? = null
 
     private val binding get() = _binding!!
 
@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = HomeBinding.inflate(inflater, container, false)
+        _binding = StreamsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

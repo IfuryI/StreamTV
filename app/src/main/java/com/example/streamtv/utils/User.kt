@@ -1,4 +1,4 @@
-package com.example.streamtv.Utils
+package com.example.streamtv.utils
 
 import com.google.firebase.database.IgnoreExtraProperties
 
