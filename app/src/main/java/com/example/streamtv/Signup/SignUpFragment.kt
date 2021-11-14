@@ -112,13 +112,12 @@ class SignUpFragment : Fragment() {
         emailInput: EditText,
         passwordInput: EditText
     ): Boolean {
-        val v = Validator()
         return (
-            v.checkEmpty(loginInput) &&
-                v.checkEmpty(emailInput) &&
-                v.checkEmail(emailInput) &&
-                v.checkEmpty(passwordInput) &&
-                v.checkPasswdLength(passwordInput)
+            Validator.checkEmpty(loginInput) &&
+                Validator.checkEmpty(emailInput) &&
+                Validator.checkEmail(emailInput) &&
+                Validator.checkEmpty(passwordInput) &&
+                Validator.checkPasswdLength(passwordInput)
             )
     }
 

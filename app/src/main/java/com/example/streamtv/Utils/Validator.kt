@@ -3,11 +3,9 @@ package com.example.streamtv.Utils
 import android.util.Patterns
 import android.widget.EditText
 
-class Validator {
+object Validator {
 
-    companion object {
-        const val MIN_PASSWD_LENGTH = 6
-    }
+    private const val MIN_PASSWD_LENGTH = 6
 
     fun checkEmpty(editText: EditText): Boolean {
         val value = getEditTextValue(editText)

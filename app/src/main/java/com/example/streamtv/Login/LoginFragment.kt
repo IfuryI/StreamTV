@@ -69,11 +69,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun isValid(emailInput: EditText, passwordInput: EditText): Boolean {
-        val v = Validator()
         return (
-            v.checkEmpty(emailInput) &&
-                v.checkEmail(emailInput) &&
-                v.checkEmpty(passwordInput)
+            Validator.checkEmpty(emailInput) &&
+                Validator.checkEmail(emailInput) &&
+                Validator.checkEmpty(passwordInput)
             )
     }
 

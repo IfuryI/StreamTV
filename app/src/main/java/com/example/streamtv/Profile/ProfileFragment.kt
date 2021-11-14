@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -78,11 +79,7 @@ class ProfileFragment : Fragment() {
                         "no status"
                     binding.aboutText.text = if (!user.about.isNullOrBlank()) user.about else
                         "User hasn't provided information about themselves"
-                    Glide
-                        .with(this@ProfileFragment)
-                        .load(user.avatarURL ?: R.drawable.ic_default_avatar)
-                        .dontTransform()
-                        .into(binding.avatar)
+                    binding.avatar.load(user.avatarURL)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -116,10 +113,7 @@ class ProfileFragment : Fragment() {
     private val choosePicture =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
-                Glide
-                    .with(this)
-                    .load(uri)
-                    .into(binding.avatar)
+                binding.avatar.load(uri)
                 // upload image on the server
             }
         }
@@ -139,5 +133,13 @@ class ProfileFragment : Fragment() {
             }
         }
         builder.show()
+    }
+
+    private fun ImageView.load(pic: Any?) {
+        Glide
+            .with(requireActivity())
+            .load(pic ?: R.drawable.ic_default_avatar)
+            .dontTransform()
+            .into(this)
     }
 }
