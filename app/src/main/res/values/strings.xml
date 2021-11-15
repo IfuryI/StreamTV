@@ -23,4 +23,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="status">Status</string>
     <string name="about_hint">Tell us a bit about yourself</string>
+    <string name="logout">Выход</string>
+    <string name="search">Поиск</string>
 </resources>
