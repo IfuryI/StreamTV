@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">StreamTV</string>
+    <string name="app_logo_alt">App Logo</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="views">Views</string>
+    <string name="likes">Likes</string>
+    <string name="profile">Profile</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="about">About</string>
+    <string name="loremipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est velit egestas dui id ornare. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum.</string>
+    <string name="home">Home</string>
+    <string name="streams">Streams</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="status">Status</string>
+    <string name="about_hint">Tell us a bit about yourself</string>
+    <string name="logout">Выход</string>
+    <string name="search">Поиск</string>
+</resources>
