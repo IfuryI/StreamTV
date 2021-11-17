@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "516778991885",
+    "firebase_url": "https://stream-tv-park-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "stream-tv-park",
+    "storage_bucket": "stream-tv-park.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516778991885:android:1efc97fcf713c947eed044",
+        "android_client_info": {
+          "package_name": "com.example.streamtv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516778991885-dk8tbm4aotaae3ec4v6vmlllgne5i0ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwLwKSDiI8b_8JkI2Jgbt9iSnU4fYA4pc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516778991885-dk8tbm4aotaae3ec4v6vmlllgne5i0ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
