@@ -37,7 +37,10 @@ class StreamsAdapter(private val context: Context, private val streams: List<Str
         val item = streams[position]
         holder.title?.text = item.title
         holder.author?.text = item.author
-        holder.watchingCount?.text = context.resources.getString(R.string.watching_now, item.watching)
+        holder.watchingCount?.text = context.resources.getString(
+            R.string.watching_now,
+            item.watching
+        )
         holder.caption?.let {
             Glide
                 .with(context)

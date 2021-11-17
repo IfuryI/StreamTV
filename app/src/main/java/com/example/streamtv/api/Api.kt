@@ -7,7 +7,7 @@ object Api {
 
     private const val BASE_URL = "https://6194af159b1e780017ca20da.mockapi.io/api/v1/"
 
-    private fun retrofit() : Retrofit {
+    private fun retrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

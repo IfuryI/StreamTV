@@ -1,6 +1,7 @@
 package com.example.streamtv.streams
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,15 +42,21 @@ class StreamsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Api.streamsService.getStreams().enqueue(object : Callback<List<Stream>> {
-            override fun onResponse(call: Call<List<Stream>>, response: Response<List<Stream>>) {
-                val streams = response.body() as List<Stream>
-                val adapter = StreamsAdapter(requireContext(), streams)
-                recyclerView?.adapter = adapter
-            }
+        Api.streamsService.getStreams().enqueue(
+            object : Callback<List<Stream>> {
+                override fun onResponse(
+                    call: Call<List<Stream>>,
+                    response: Response<List<Stream>>
+                ) {
+                    val streams = response.body() as List<Stream>
+                    val adapter = StreamsAdapter(requireContext(), streams)
+                    recyclerView?.adapter = adapter
+                }
 
-            override fun onFailure(call: Call<List<Stream>>, t: Throwable) {
+                override fun onFailure(call: Call<List<Stream>>, t: Throwable) {
+                    Log.v("Streams", "Error fetching streams: " + t.message)
+                }
             }
-        })
+        )
     }
 }
