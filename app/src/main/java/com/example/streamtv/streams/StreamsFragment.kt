@@ -44,7 +44,7 @@ class StreamsFragment : Fragment() {
         Api.streamsService.getStreams().enqueue(object : Callback<List<Stream>> {
             override fun onResponse(call: Call<List<Stream>>, response: Response<List<Stream>>) {
                 val streams = response.body() as List<Stream>
-                val adapter = StreamsAdapter(streams)
+                val adapter = StreamsAdapter(requireContext(), streams)
                 recyclerView?.adapter = adapter
             }
 

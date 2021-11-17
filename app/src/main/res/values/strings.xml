@@ -25,4 +25,6 @@
     <string name="about_hint">Tell us a bit about yourself</string>
     <string name="logout">Выход</string>
     <string name="search">Поиск</string>
+    <string name="stream_image">Stream Image</string>
+    <string name="watching_now">%s watching now</string>
 </resources>
